@@ -1,0 +1,85 @@
+_schema-version: "3.2"
+ID: com-suncor-zf968pnitemmaint
+description: Price Notification Item Maintenance
+version: 0.0.1
+modules:
+- name: com-suncor-zf968pnitemmaint-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: com-suncor-zf968pnitemmaint-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - comsuncorzf968pnitemmaint.zip
+      name: comsuncorzf968pnitemmaint
+      target-path: resources/
+- name: comsuncorzf968pnitemmaint
+  type: html5
+  path: .
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: com-suncor-zf968pnitemmaint-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: com-suncor-zf968pnitemmaint-destination-service
+    parameters:
+      content-target: true
+  - name: com-suncor-zf968pnitemmaint-repo-host
+    parameters:
+      service-key:
+        name: com-suncor-zf968pnitemmaint-repo-host-key
+  - name: uaa_com-suncor-zf968pnitemmaint
+    parameters:
+      service-key:
+        name: uaa_com-suncor-zf968pnitemmaint-key
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Name: zf968pn_itemmaint_com_suncor_zf968pnitemmaint_repo_host
+          ServiceInstanceName: com-suncor-zf968pnitemmaint-html5-srv
+          ServiceKeyName: com-suncor-zf968pnitemmaint-repo-host-key
+          sap.cloud.service: zf968pn_itemmaint
+        - Authentication: OAuth2UserTokenExchange
+          Name: zf968pn_itemmaint_uaa_com_suncor_zf968pnitemmaint
+          ServiceInstanceName: com-suncor-zf968pnitemmaint-xsuaa-service
+          ServiceKeyName: uaa_com-suncor-zf968pnitemmaint-key
+          sap.cloud.service: zf968pn_itemmaint
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+resources:
+- name: com-suncor-zf968pnitemmaint-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: com-suncor-zf968pnitemmaint-html5-srv
+    service-plan: app-host
+- name: com-suncor-zf968pnitemmaint-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      version: 1.0.0
+    service: destination
+    service-name: com-suncor-zf968pnitemmaint-destination-service
+    service-plan: lite
+- name: uaa_com-suncor-zf968pnitemmaint
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: com-suncor-zf968pnitemmaint-xsuaa-service
+    service-plan: application
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true

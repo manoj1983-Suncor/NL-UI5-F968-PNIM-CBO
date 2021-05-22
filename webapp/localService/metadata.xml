@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="https://d1r.devpp.network.shc:8443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='S4H')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://d1r.devpp.network.shc:8443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='S4H')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://d1r.devpp.network.shc:8443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='S4H')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://d1r.devpp.network.shc:8443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='S4H')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://d1r.devpp.network.shc:8443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='S4H')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://d1r.devpp.network.shc:8443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='S4H')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://d1r.devpp.network.shc:8443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='S4H')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://d1r.devpp.network.shc:8443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='S4H')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://d1r.devpp.network.shc:8443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='S4H')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZZ1_F968_PN_EXPLIST_CDS" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="P_Scbo_UserType" sap:label="User" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="name"/>
+                </Key>
+                <Property Name="name" Type="Edm.String" Nullable="false" MaxLength="12" sap:display-format="UpperCase" sap:label="User" sap:quickinfo="User Name in User Master Record"/>
+                <Property Name="description" Type="Edm.String" MaxLength="80" sap:label="Description" sap:quickinfo="Description of the Technical User Account"/>
+            </EntityType>
+            <EntityType Name="ZZ1_F968_PN_EXPLISTType" sap:label="F968_PN_ExpLIST" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="SAP_UUID"/>
+                </Key>
+                <Property Name="SAP_UUID" Type="Edm.Guid" Nullable="false" sap:label="UUID" sap:quickinfo="16 Byte UUID in 16 Bytes (Raw Format)"/>
+                <Property Name="SAP_CreatedDateTime" Type="Edm.DateTimeOffset" Precision="7" sap:label="Created On" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="SAP_CreatedByUser" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:text="SAP_CreatedByUser_Text" sap:label="Created By" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="SAP_CreatedByUser_Text" Type="Edm.String" MaxLength="80" sap:label="Description" sap:quickinfo="Description of the Technical User Account" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="SAP_LastChangedDateTime" Type="Edm.DateTimeOffset" Precision="7" sap:label="Last Changed On" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="SAP_LastChangedByUser" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:text="SAP_LastChangedByUser_Text" sap:label="Last Changed By" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="SAP_LastChangedByUser_Text" Type="Edm.String" MaxLength="80" sap:label="Description" sap:quickinfo="Description of the Technical User Account" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Contract" Type="Edm.String" MaxLength="10" sap:label="Contract"/>
+                <Property Name="Customer" Type="Edm.String" MaxLength="10" sap:label="Customer"/>
+                <Property Name="Plant" Type="Edm.String" MaxLength="4" sap:label="Plant"/>
+                <Property Name="Material" Type="Edm.String" MaxLength="18" sap:label="Material"/>
+                <Property Name="SalesOrg" Type="Edm.String" MaxLength="4" sap:label="Sales Org"/>
+                <NavigationProperty Name="to_SAPSysAdminDataChangeUser" Relationship="ZZ1_F968_PN_EXPLIST_CDS.assoc_DAEEE2B4DF9529502A7CC8BA1F570973" FromRole="FromRole_assoc_DAEEE2B4DF9529502A7CC8BA1F570973" ToRole="ToRole_assoc_DAEEE2B4DF9529502A7CC8BA1F570973"/>
+                <NavigationProperty Name="to_SAPSysAdminDataCreateUser" Relationship="ZZ1_F968_PN_EXPLIST_CDS.assoc_3EE6BFC08ED9FC1BF131CEE2523D2FF4" FromRole="FromRole_assoc_3EE6BFC08ED9FC1BF131CEE2523D2FF4" ToRole="ToRole_assoc_3EE6BFC08ED9FC1BF131CEE2523D2FF4"/>
+            </EntityType>
+            <Association Name="assoc_3EE6BFC08ED9FC1BF131CEE2523D2FF4" sap:content-version="1">
+                <End Type="ZZ1_F968_PN_EXPLIST_CDS.ZZ1_F968_PN_EXPLISTType" Multiplicity="1" Role="FromRole_assoc_3EE6BFC08ED9FC1BF131CEE2523D2FF4"/>
+                <End Type="ZZ1_F968_PN_EXPLIST_CDS.P_Scbo_UserType" Multiplicity="0..1" Role="ToRole_assoc_3EE6BFC08ED9FC1BF131CEE2523D2FF4"/>
+            </Association>
+            <Association Name="assoc_DAEEE2B4DF9529502A7CC8BA1F570973" sap:content-version="1">
+                <End Type="ZZ1_F968_PN_EXPLIST_CDS.ZZ1_F968_PN_EXPLISTType" Multiplicity="1" Role="FromRole_assoc_DAEEE2B4DF9529502A7CC8BA1F570973"/>
+                <End Type="ZZ1_F968_PN_EXPLIST_CDS.P_Scbo_UserType" Multiplicity="0..1" Role="ToRole_assoc_DAEEE2B4DF9529502A7CC8BA1F570973"/>
+            </Association>
+            <EntityContainer Name="ZZ1_F968_PN_EXPLIST_CDS_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="P_Scbo_User" EntityType="ZZ1_F968_PN_EXPLIST_CDS.P_Scbo_UserType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="ZZ1_F968_PN_EXPLIST" EntityType="ZZ1_F968_PN_EXPLIST_CDS.ZZ1_F968_PN_EXPLISTType" sap:searchable="true" sap:content-version="1"/>
+                <AssociationSet Name="assoc_DAEEE2B4DF9529502A7CC8BA1F570973" Association="ZZ1_F968_PN_EXPLIST_CDS.assoc_DAEEE2B4DF9529502A7CC8BA1F570973" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZZ1_F968_PN_EXPLIST" Role="FromRole_assoc_DAEEE2B4DF9529502A7CC8BA1F570973"/>
+                    <End EntitySet="P_Scbo_User" Role="ToRole_assoc_DAEEE2B4DF9529502A7CC8BA1F570973"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_3EE6BFC08ED9FC1BF131CEE2523D2FF4" Association="ZZ1_F968_PN_EXPLIST_CDS.assoc_3EE6BFC08ED9FC1BF131CEE2523D2FF4" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZZ1_F968_PN_EXPLIST" Role="FromRole_assoc_3EE6BFC08ED9FC1BF131CEE2523D2FF4"/>
+                    <End EntitySet="P_Scbo_User" Role="ToRole_assoc_3EE6BFC08ED9FC1BF131CEE2523D2FF4"/>
+                </AssociationSet>
+                <FunctionImport Name="ZZ1_F968_PN_EXPLISTSap_upsert" ReturnType="ZZ1_F968_PN_EXPLIST_CDS.ZZ1_F968_PN_EXPLISTType" EntitySet="ZZ1_F968_PN_EXPLIST" m:HttpMethod="POST">
+                    <Parameter Name="Contract" Type="Edm.String" Mode="In" MaxLength="10"/>
+                    <Parameter Name="Customer" Type="Edm.String" Mode="In" MaxLength="10"/>
+                    <Parameter Name="Plant" Type="Edm.String" Mode="In" MaxLength="4"/>
+                    <Parameter Name="Material" Type="Edm.String" Mode="In" MaxLength="18"/>
+                    <Parameter Name="SalesOrg" Type="Edm.String" Mode="In" MaxLength="4"/>
+                </FunctionImport>
+            </EntityContainer>
+            <Annotations Target="ZZ1_F968_PN_EXPLIST_CDS.ZZ1_F968_PN_EXPLIST_CDS_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
+                <Annotation Term="Aggregation.ApplySupported">
+                    <Record>
+                        <PropertyValue Property="Transformations">
+                            <Collection>
+                                <String>aggregate</String>
+                                <String>groupby</String>
+                                <String>filter</String>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Rollup" EnumMember="None"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZZ1_F968_PN_EXPLIST_CDS.ZZ1_F968_PN_EXPLISTType/Contract" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="ZZ1_F968_PN_EXPLIST_CDS.ZZ1_F968_PN_EXPLISTType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.SemanticKey">
+                    <Collection>
+                        <PropertyPath>Contract</PropertyPath>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <atom:link rel="self" href="https://d1r.devpp.network.shc:8443/sap/opu/odata/sap/ZZ1_F968_PN_EXPLIST_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="https://d1r.devpp.network.shc:8443/sap/opu/odata/sap/ZZ1_F968_PN_EXPLIST_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
